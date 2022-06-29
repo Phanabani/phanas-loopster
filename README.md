@@ -16,10 +16,8 @@ A small Python program that helps you easily loop music for RPG Maker.
 
 ### Prerequisites
 
-- [Poetry](https://python-poetry.org/docs/#installation) – dependency manager
-- (Optional) pyenv – Python version manager
-    - [pyenv](https://github.com/pyenv/pyenv) (Linux, Mac)
-    - [pyenv-win](https://github.com/pyenv-win/pyenv-win) (Windows)
+- [Python 3.9+](https://www.python.org) 
+- (Optional) [Poetry](https://python-poetry.org/docs/#installation) – dependency manager
 
 ### Install Phana's Loopster
 
@@ -30,18 +28,21 @@ git clone https://github.com/phanabani/phanas-loopster.git
 cd phanas-loopster
 ```
 
-Install the dependencies with Poetry. Phana's Loopster requires Python 3.9.6+.
-
-```shell
-poetry install --no-root --no-dev
-```
-
 ## Usage
 
-In the top level directory, simply run Phana's Loopster as a Python module with Poetry.
+In the top level directory, simply run Phana's Loopster as a Python module to
+view a help message listing all available arguments.
 
 ```shell
-poetry run python -m phanas_loopster
+python -m phanas_loopster
+```
+
+Example usage:
+
+```shell
+python -m phanas_loopster \
+"C:\Users\Phana\Music\mySong.wav" "C:\Users\Phana\Music\mySong.ogg" 120 "17:01" \
+--title "My Song" --artist Phanabani --album "My Album" --year 2022
 ```
 
 ## Developers
