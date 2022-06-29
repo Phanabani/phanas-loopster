@@ -37,13 +37,38 @@ view a help message listing all available arguments.
 python -m phanas_loopster
 ```
 
-Example usage:
+### Example usage:
 
 ```shell
-python -m phanas_loopster \
+python -m phanas_loopster \  # on Windows you might need to use ^ instead of \ to do line breaks
 "C:\Users\Phana\Music\mySong.wav" "C:\Users\Phana\Music\mySong.ogg" 120 "17:01" \
 --title "My Song" --artist Phanabani --album "My Album" --year 2022
 ```
+
+### Beat string
+
+The "17:01" is what I call a beat string (for lack of a better term). It's a
+string representing bars:beats:ticks, and ticks and beats may be omitted. Ticks
+are tied to the PPQ / tick division (parts-per-quarter[-note]). A common PPQ is
+96, so you'll have 96 ticks per beat. This beat string is used to tell Phana's
+Loopster how long your song is WITHOUT the tail (which includes reverb, delays,
+release times and all that).
+
+Just tell us how long your song is, and we'll handle the looping for you!
+
+### Technical details
+
+We achieve looping like this:
+
+1. Calculate how long the song's outro tail is
+2. Copy a piece of the beginning of the song to match the duration of the outro tail
+3. Move this intro to the end, mixing on top of the outro tail
+4. Write metadata tags called LOOPSTART and LOOPLENGTH to tell other programs to skip the intro that doesn't include the outro tail
+
+Essentially, we want the outro tail to overlap the intro, but only after we 
+hear the intro once without it. This is how we achieve that! Hopefully, Phana's
+Loopster makes this super easy so you don't have to do lots of math and tedious
+entering of metadata.
 
 ## Developers
 
