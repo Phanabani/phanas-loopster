@@ -47,14 +47,17 @@ python -m phanas_loopster \  # on Windows you might need to use ^ instead of \ t
 
 ### Beat string
 
-The "17:01" is what I call a beat string (for lack of a better term). It's a
-string representing bars:beats:ticks, and ticks and beats may be omitted. Ticks
-are tied to the PPQ / tick division (parts-per-quarter[-note]). A common PPQ is
-96, so you'll have 96 ticks per beat. This beat string is used to tell Phana's
-Loopster how long your song is WITHOUT the tail (which includes reverb, delays,
-release times and all that).
+The "17:01" is what I call a beat string (for lack of a better term). The beat
+string is a string representing bars:beats:ticks, and ticks and beats may be
+omitted. In the example, "17:01" means "the song ends at bar 17, beat 1",
+so 16 full bars of music.
 
-Just tell us how long your song is, and we'll handle the looping for you!
+Ticks are tied to the PPQ / tick division (parts-per-quarter[-note]). A common
+PPQ is 96, so you'll have 96 ticks per beat.
+
+This beat string is used to tell Phana's Loopster how long your song is WITHOUT
+the tail (which includes reverb, delays, release times and all that). Just tell
+us how long your song is, and we'll handle the looping for you!
 
 ### Technical details
 
