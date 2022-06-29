@@ -72,6 +72,8 @@ def make_looping_ogg(
     output_file: Path,
     song_duration: int,
     tail_duration: int,
+    *,
+    quality: int = 7,
     title: str | None = None,
     artist: str | None = None,
     album: str | None = None,
@@ -91,7 +93,7 @@ def make_looping_ogg(
         "ffmpeg",
         "-y",
         ("-i", pathstr(input_file)),
-        ("-q:a", "7"),
+        ("-q:a", str(quality)),
         copy_intro_to_end_filter(song_duration, tail_duration),
         ("-metadata", f"LOOPSTART={tail_duration}"),
         ("-metadata", f"LOOPLENGTH={song_duration}"),
@@ -147,6 +149,17 @@ def main():
         default=96,
         help="PPQ (parts per quarter note), also known as tick division",
     )
+    parser.add_argument(
+        "-q",
+        "--quality",
+        required=False,
+        type=int,
+        default=7,
+        help=(
+            "OGG quality (between -1 and 10 -- "
+            "https://trac.ffmpeg.org/wiki/TheoraVorbisEncodingGuide)"
+        ),
+    )
 
     metadata_group = parser.add_argument_group("Metadata", "Optional metadata")
     metadata_group.add_argument("--title", required=False, help="Song title")
@@ -169,6 +182,7 @@ def main():
     beats_per_bar: int = args.beats_per_bar
     sample_rate: int = args.samplerate
     ppq: int = args.ppq
+    quality: int = args.quality
 
     # Metadata
     title: str | None = args.title
@@ -187,6 +201,7 @@ def main():
         output_file,
         song_length_no_tail,
         tail_length,
+        quality=quality,
         title=title,
         artist=artist,
         album=album,
