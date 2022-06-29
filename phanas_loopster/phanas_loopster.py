@@ -13,6 +13,7 @@ import json
 import logging
 import math
 from pathlib import Path
+import sys
 from typing import Any
 
 from phanas_loopster.beats_to_samples import beats_to_samples
@@ -155,7 +156,7 @@ def main():
     metadata_group.add_argument("--album", required=False, help="Album name")
     metadata_group.add_argument("--year", required=False, help="Creation date (year)")
 
-    args = parser.parse_args()
+    args = parser.parse_args(args=None if sys.argv[1:] else ["--help"])
 
     if args.verbose:
         logger.setLevel("DEBUG")
