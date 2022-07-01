@@ -39,9 +39,20 @@ python -m phanas_loopster
 
 ### Example usage:
 
+Simple
+
+```shell
+# Song loop starts at the bar 5 and ends at bar 20 (4 bars of intro, 16
+# bars of body)
+# You can omit the loop start argument if it starts at bar 1
+python -m phanas_loopster mySong.wav mySong.ogg 120 -s 5 -e 21
+```
+
+Advanced
+
 ```shell
 python -m phanas_loopster \  # on Windows you might need to use ^ instead of \ to do line breaks
-"C:\Users\Phana\Music\mySong.wav" "C:\Users\Phana\Music\mySong.ogg" 120 "17:01" \
+"C:\Users\Phana\Music\mySong.wav" "C:\Users\Phana\Music\mySong.ogg" 120 --end "17:01" \
 --title "My Song" --artist Phanabani --album "My Album" --year 2022
 ```
 
